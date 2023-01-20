@@ -1,71 +1,239 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useState, useMemo, BaseSyntheticEvent } from 'react';
+import Link from 'next/link';
+import { ethers } from 'ethers';
+import { ComponentBaseProps } from './interface';
+import {
+  Box,
+  Typography,
+  TextField,
+  CircularProgress,
+  Snackbar,
+  Alert
+} from '@mui/material';
+import CallMadeRoundedIcon from '@mui/icons-material/CallMadeRounded';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
-export default function Home() {
+import { CustomButton, ButtonWallet } from '../components';
+
+// const usdc = {
+//   address: "0x68ec573C119826db2eaEA1Efbfc2970cDaC869c4",
+//   abi: [
+//     "function gimmeSome() external",
+//     "function balanceOf(address _owner) public view returns (uint256 balance)",
+//     "function transfer(address _to, uint256 _value) public returns (bool success)",
+//   ],
+// };
+
+export default function Home(props: ComponentBaseProps) {
+  const {
+    provider,
+    signer,
+    checkWalletConnection,
+    walletIsConnected,
+    isLoadingWallet,
+    walletData
+  } = props;
+
+  const { address: selfAddress, balance, network } = walletData;
+
+  const [address, setAddress] = useState<string>('');
+  const [amount, setAmount] = useState<string>('');
+
+  const [addressIsValid, setAddressIsValid] = useState<boolean>(false);
+  const isSelfAddress = address === selfAddress;
+  const addressAllowed = !isSelfAddress && addressIsValid && address !== '';
+
+  const formattedBalance = balance && parseFloat(balance);
+  const formattedAmount = parseFloat(amount);
+  const amountAllowed = formattedAmount > 0 && formattedAmount <= formattedBalance;
+
+  const [isSendingEth, setIsSendingEth] = useState<boolean>(false);
+  const [txReceipt, setTxReceipt] = useState<any>({
+    from: '',
+    to: '',
+    blockNumber: '',
+    cumulativeGasUsed: '',
+    transactionHash: '',
+    value: ''
+  });
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
+
+  const sendEth = async () => {
+    setIsSendingEth(true);
+
+    const formattedAmount = ethers.utils.parseEther(amount);
+
+    if (signer) {
+      // await provider.send("eth_requestAccounts", []);
+
+      try {
+        const tx = await signer.sendTransaction({
+          to: address,
+          value: formattedAmount
+        });
+  
+        const receipt = await tx.wait();
+        setTxReceipt({
+          from: receipt.from,
+          to: receipt.to,
+          blockNumber: receipt.blockNumber,
+          cumulativeGasUsed: receipt.cumulativeGasUsed.toString(),
+          transactionHash: receipt.transactionHash,
+          value: tx.value.toString()
+        });
+        setOpenSnackbar(true);
+      } catch (error) {
+        console.log(error);
+      }
+
+      setIsSendingEth(false);
+    }
+  };
+
+  const generateSnackbarContent = () => {
+    const explorerBaseUrl = network === 'homestead'
+      ? 'https://etherscan.io/tx/'
+      : 'https://goerli.etherscan.io/tx/';
+    
+    const txUrl = explorerBaseUrl + txReceipt.transactionHash;
+
+    return (
+      <Box
+        display={'flex'}
+        alignItems='center'
+      >
+        <Typography mr={'16px'}>Transaction confirmed!</Typography>
+        <CustomButton
+          buttonContent={<CallMadeRoundedIcon />}
+          variant='icon'
+          href={txUrl}
+        />
+      </Box>
+    );
+  };
+  const responseSnackbar = (
+    <Snackbar
+      open={openSnackbar}
+      onClose={() => setOpenSnackbar(false)}
+      autoHideDuration={10000}
+    >
+      <Alert
+        onClose={() => setOpenSnackbar(false)}
+        className='snackbar-base snackbar-success'
+        icon={<CheckCircleRoundedIcon />}
+      >
+        {generateSnackbarContent()}
+      </Alert>
+    </Snackbar>
+  );
+
+  // const mintUsdc = async () => {
+  //   await provider.send("eth_requestAccounts", []);
+  //   const usdcContract = new ethers.Contract(usdc.address, usdc.abi, signer);
+    
+  //   const tx = await usdcContract.gimmeSome({ gasPrice: 20e9 });
+  //   console.log(`Transaction hash: ${tx.hash}`);
+
+  //   const receipt = await tx.wait();
+  //   console.log(`Transaction confirmed in block ${receipt.blockNumber}`);
+  //   console.log(`Gas used: ${receipt.gasUsed.toString()}`);
+  // };
+
+  useMemo(() => {
+    const addressIsValid = ethers.utils.isAddress(address);
+    setAddressIsValid(addressIsValid);
+  }, [address]);
+
+  const onChangeAmount = (value: string) => {
+    const floatRegex = /^\d*\.?\d*$/;
+
+    if (floatRegex.test(value)) {
+        setAmount(value);
+    }
+  };
+
+  const addressSection = (
+    <Box mb={'24px'}>
+      <Typography mb={'8px'}>Address</Typography>
+      <TextField
+        variant="standard"
+        placeholder='0xabc12345'
+        InputProps={{
+          disableUnderline: true,
+          className: 'input-base'
+        }}
+        value={address}
+        onChange={(event: BaseSyntheticEvent) => setAddress(event.target.value)}
+      />
+    </Box>
+  );
+
+  const amountInputAdornment = (
+    <Box
+      display={'flex'}
+      justifyContent='center'
+      alignItems={'center'}
+      className='input-adornment'
+    >
+      <Typography>ETH</Typography>
+    </Box>
+  );
+  const amountSection = (
+    <Box mb={'40px'}>
+      <Typography mb={'8px'}>Amount</Typography>
+      <TextField
+        variant="standard"
+        placeholder='1.5'
+        InputProps={{
+          disableUnderline: true,
+          className: 'input-base',
+          endAdornment: amountInputAdornment
+        }}
+        value={amount}
+        onChange={(event: BaseSyntheticEvent) => onChangeAmount(event.target.value)}
+      />
+    </Box>
+  );
+
+  const sendButton = (
+    <CustomButton
+      buttonContent={isSendingEth ? 'Sending...' : 'Send'}
+      onClick={sendEth}
+      variant='primary'
+      disabled={!amountAllowed || !addressAllowed || isSendingEth}
+      startIcon={isSendingEth ? <CircularProgress size={'24px'} /> : undefined}
+    />
+  );
+
+  const formButton = (
+    <ButtonWallet
+      provider={provider}
+      signer={signer}
+      checkWalletConnection={checkWalletConnection}
+      walletIsConnected={walletIsConnected}
+      isLoadingWallet={isLoadingWallet}
+      connectedWalletButton={sendButton}
+      walletData={walletData}
+    />
+  );
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <meta name="description" content="Generated by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+    <Box
+      display={'flex'}
+      justifyContent='center'
+      alignItems={'center'}
+      className='app-body-container'
+    >
+      <Box
+        display={'flex'}
+        flexDirection='column'
+        className='card-base'
+      >
+        {addressSection}
+        {amountSection}
+        {formButton}
+        {responseSnackbar}
+      </Box>
+    </Box>
+  );
 }

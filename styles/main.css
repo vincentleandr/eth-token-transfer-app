@@ -1,0 +1,211 @@
+/* Global Colors
+================================= */
+/* ================================= */
+/* Background Colors
+================================= */
+/* ================================= */
+/* Text Colors
+================================= */
+/* ================================= */
+/* Input Colors
+================================= */
+/* ================================= */
+/* Button Colors
+================================= */
+/* ================================= */
+/* Shadow
+================================= */
+/* ================================= */
+/* Snackbar
+================================= */
+/* ================================= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
+:root {
+  --bg-body-url: url("/bg-default.svg");
+  --bg-card: #FFFFFF;
+  --text-main: #333333;
+  --textfield-border: #D3D3D3;
+  --textfield-adornment-bg: #F1F1F1;
+  --textfield-placeholder: #BBBBBB;
+  --button-primary-bg: #4472CA;
+  --button-primary-hover-bg: #335fb3;
+  --button-secondary-bg: #FFFFFF;
+  --button-secondary-hover-bg: #f7f7f7;
+  --button-icon-fill: #BBBBBB;
+  --shadow-default: 0px 4px 8px rgba(51, 51, 51, 0.25);
+  --shadow-soft: 0px 4px 14px rgba(136, 136, 136, 0.25);
+}
+
+[data-theme=dark] {
+  --bg-body-url: url("/bg-dark.svg");
+  --bg-card: #2D3747;
+  --text-main: #FFFFFF;
+  --textfield-border: #505762;
+  --textfield-adornment-bg: #3F4754;
+  --button-secondary-bg: #2D3747;
+  --button-secondary-hover-bg: #27303e;
+  --shadow-soft: 0px 4px 14px rgba(17, 17, 17, 0.25);
+}
+
+/* Typography Base
+================================= */
+.MuiTypography-root {
+  font-family: "Inter", sans-serif;
+}
+
+.MuiTypography-body1 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.button-base {
+  font-family: "Inter", sans-serif;
+  padding: 16px 32px;
+  border-radius: 16px;
+  text-transform: unset;
+  transition: all 0.2s ease;
+}
+
+.button-primary {
+  background: var(--button-primary-bg);
+  box-shadow: var(--shadow-default);
+}
+.button-primary p, .button-primary span {
+  color: #FFFFFF;
+}
+.button-primary:hover {
+  background: var(--button-primary-hover-bg);
+}
+.button-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+  pointer-events: unset;
+}
+
+.button-secondary {
+  background: var(--button-secondary-bg);
+  box-shadow: var(--shadow-soft);
+}
+.button-secondary p, .button-secondary span {
+  color: var(--text-main);
+}
+.button-secondary:hover {
+  background: var(--button-secondary-hover-bg);
+}
+
+.button-theme {
+  position: absolute;
+  right: 24px;
+}
+
+.button-icon {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 8px;
+}
+.button-icon svg {
+  width: 16px;
+  color: #BBBBBB;
+}
+.button-icon:hover {
+  background: var(--button-secondary-hover-bg);
+}
+
+.input-base {
+  font-family: "Inter", sans-serif;
+  width: 350px;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid var(--textfield-border);
+  color: var(--text-main);
+  transition: all 0.2s ease;
+}
+.input-base input {
+  padding: 0 16px;
+}
+.input-base input::-moz-placeholder {
+  color: var(--textfield-placeholder);
+}
+.input-base input:-ms-input-placeholder {
+  color: var(--textfield-placeholder);
+}
+.input-base input::placeholder {
+  color: var(--textfield-placeholder);
+}
+.input-base.Mui-focused {
+  border: 1px solid #4472CA;
+}
+
+.input-adornment {
+  height: 100%;
+  padding: 0 16px;
+  border-radius: 0 8px 8px 0;
+  border-left: 1px solid var(--textfield-border);
+  background: var(--textfield-adornment-bg);
+}
+
+.snackbar-base {
+  padding: 8px 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+.snackbar-base p, .snackbar-base span {
+  color: #333333;
+}
+.snackbar-base .MuiAlert-action {
+  display: none;
+}
+
+.snackbar-success {
+  background-color: #DFF1D9;
+  color: #1F8B24;
+}
+.snackbar-success p, .snackbar-success span, .snackbar-success svg {
+  color: #1F8B24;
+}
+.snackbar-success .button-icon:hover {
+  background: #cfeac6;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s ease, background-image 0.5s ease;
+  background-image: var(--bg-body-url);
+  background-size: cover;
+  padding: 24px;
+}
+body p, body span {
+  color: var(--text-main);
+}
+
+.app-body-container {
+  width: 100%;
+  height: calc(100vh - 120px);
+}
+
+.card-base, .connected-wallet-menu {
+  padding: 40px;
+  background: var(--bg-card);
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.connected-wallet-menu {
+  padding: 0;
+  margin-top: 8px;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9AE3B8;
+}
+
+.MuiTooltip-tooltip {
+  font-family: "Inter", sans-serif;
+  padding: 8px 16px;
+  border-radius: 8px;
+}/*# sourceMappingURL=main.css.map */

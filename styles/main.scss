@@ -1,0 +1,48 @@
+@import 'base';
+@import 'typography';
+@import 'button';
+@import 'input';
+@import 'snackbar';
+
+body {
+    font-family: $font-primary;
+    transition: all 0.2s ease, background-image 0.5s ease;
+    background-image: var(--bg-body-url);
+    background-size: cover;
+    padding: 24px;
+    
+    p, span {
+        color: var(--text-main);
+    }
+}
+
+.app-body-container {
+    width: 100%;
+    height: calc(100vh - 120px);
+}
+
+.card-base {
+    padding: 40px;
+    background: var(--bg-card);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+}
+
+.connected-wallet-menu {
+    @extend .card-base;
+    padding: 0;
+    margin-top: 8px;
+}
+
+.online-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #9AE3B8;
+}
+
+.MuiTooltip-tooltip {
+    font-family: $font-primary;
+    padding: 8px 16px;
+    border-radius: 8px;
+}

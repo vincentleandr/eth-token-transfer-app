@@ -1,0 +1,112 @@
+/* Global Colors
+================================= */
+$default-white: #FFFFFF;
+$default-dark: #2D3747;
+$default-gray: #BBBBBB;
+$default-blue: #4472CA;
+/* ================================= */
+
+/* Background Colors
+================================= */
+$bg-body-url: url('/bg-default.svg');
+$bg-default: $default-white;
+
+$bg-body-url-dark: url('/bg-dark.svg');
+$bg-default-dark: $default-dark;
+/* ================================= */
+
+/* Text Colors
+================================= */
+$text-main: #333333;
+
+$text-main-dark: $default-white;
+/* ================================= */
+
+/* Input Colors
+================================= */
+$textfield-border: #D3D3D3;
+$textfield-adornment-bg: #F1F1F1;
+$textfield-placeholder: $default-gray;
+
+$textfield-border-dark: #505762;
+$textfield-adornment-bg-dark: #3F4754;
+/* ================================= */
+
+/* Button Colors
+================================= */
+$button-primary-bg: #4472CA;
+$button-primary-hover-bg: darken($button-primary-bg, 8%);
+$button-secondary-bg: $bg-default;
+$button-secondary-hover-bg: darken($button-secondary-bg, 3%);
+$button-icon-fill: $default-gray;
+
+$button-secondary-bg-dark: $bg-default-dark;
+$button-secondary-hover-bg-dark: darken($button-secondary-bg-dark, 3%);
+/* ================================= */
+
+/* Shadow
+================================= */
+$shadow-default: 0px 4px 8px rgba(51, 51, 51, 0.25); // #333333
+$shadow-soft: 0px 4px 14px rgba(136, 136, 136, 0.25); // #888888
+
+$shadow-soft-dark: 0px 4px 14px rgba(17, 17, 17, 0.25);
+/* ================================= */
+
+/* Snackbar
+================================= */
+$green-background: #DFF1D9;
+$green-background-text: #1F8B24;
+$red-background: #FAE1DB;
+$red-background-text: #D91009;
+$grey-background: #F0ECE8;
+$grey-background-text: #605F5C;
+$yellow-background: #FFF3CD;
+$yellow-background-text: #E6AB0A;
+/* ================================= */
+
+// Default Mode (Light Mode)
+:root {
+    // Background
+    --bg-body-url: #{$bg-body-url};
+    --bg-card: #{$bg-default};
+
+    // Text
+    --text-main: #{$text-main};
+
+    // Input
+    --textfield-border: #{$textfield-border};
+    --textfield-adornment-bg: #{$textfield-adornment-bg};
+    --textfield-placeholder: #{$textfield-placeholder};
+
+    // Button
+    --button-primary-bg: #{$button-primary-bg};
+    --button-primary-hover-bg: #{$button-primary-hover-bg};
+    --button-secondary-bg: #{$button-secondary-bg};
+    --button-secondary-hover-bg: #{$button-secondary-hover-bg};
+    --button-icon-fill: #{$button-icon-fill};
+
+    // Shadow
+    --shadow-default: #{$shadow-default};
+    --shadow-soft: #{$shadow-soft};
+}
+
+// Dark Mode
+[data-theme='dark'] {
+    // Background
+    --bg-body-url: #{$bg-body-url-dark};
+    --bg-card: #{$bg-default-dark};
+
+    // Text
+    --text-main: #{$text-main-dark};
+
+    // Input
+    --textfield-border: #{$textfield-border-dark};
+    --textfield-adornment-bg: #{$textfield-adornment-bg-dark};
+
+    // Button
+    --button-secondary-bg: #{$button-secondary-bg-dark};
+    --button-secondary-hover-bg: #{$button-secondary-hover-bg-dark};
+
+    // Shadow
+    --shadow-soft: #{$shadow-soft-dark};
+}

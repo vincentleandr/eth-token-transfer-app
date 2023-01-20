@@ -1,0 +1,29 @@
+.input-base {
+    font-family: $font-primary;
+    width: 350px;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid var(--textfield-border);
+    color: var(--text-main);
+    transition: all 0.2s ease;
+
+    input {
+        padding: 0 16px;
+    }
+
+    input::placeholder {
+        color: var(--textfield-placeholder);
+    }
+
+    &.Mui-focused {
+        border: 1px solid $default-blue;
+    }
+}
+
+.input-adornment {
+    height: 100%;
+    padding: 0 16px;
+    border-radius: 0 8px 8px 0;
+    border-left: 1px solid var(--textfield-border);
+    background: var(--textfield-adornment-bg);
+}

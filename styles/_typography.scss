@@ -1,0 +1,24 @@
+/* Typography Base
+================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+// Font family
+$font-primary: 'Inter', sans-serif;
+
+// Font weight
+$font-weight-semibold: 600;
+
+// Font size
+$font-size-body1: 16px;
+
+// Typography variant (class is based on MUI's documentation)
+.MuiTypography-root {
+    font-family: $font-primary;
+}
+
+.MuiTypography-body1 {
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-body1;
+
+    // TODO: Add color variants
+}

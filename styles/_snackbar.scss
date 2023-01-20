@@ -1,0 +1,27 @@
+.snackbar-base {
+    padding: 8px 16px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+
+    p, span {
+        color: $text-main;
+    }
+
+    .MuiAlert-action {
+        display: none;
+    }
+}
+
+.snackbar-success {
+    background-color: $green-background;
+    color: $green-background-text;
+
+    p, span, svg {
+        color: $green-background-text;
+    }
+
+    .button-icon:hover {
+        background: darken($green-background, 5%);
+    }
+}
