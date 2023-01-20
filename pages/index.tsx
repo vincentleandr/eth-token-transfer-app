@@ -15,15 +15,6 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 import { CustomButton, ButtonWallet } from '../components';
 
-// const usdc = {
-//   address: "0x68ec573C119826db2eaEA1Efbfc2970cDaC869c4",
-//   abi: [
-//     "function gimmeSome() external",
-//     "function balanceOf(address _owner) public view returns (uint256 balance)",
-//     "function transfer(address _to, uint256 _value) public returns (bool success)",
-//   ],
-// };
-
 export default function Home(props: ComponentBaseProps) {
   const {
     provider,
@@ -126,18 +117,6 @@ export default function Home(props: ComponentBaseProps) {
       </Alert>
     </Snackbar>
   );
-
-  // const mintUsdc = async () => {
-  //   await provider.send("eth_requestAccounts", []);
-  //   const usdcContract = new ethers.Contract(usdc.address, usdc.abi, signer);
-    
-  //   const tx = await usdcContract.gimmeSome({ gasPrice: 20e9 });
-  //   console.log(`Transaction hash: ${tx.hash}`);
-
-  //   const receipt = await tx.wait();
-  //   console.log(`Transaction confirmed in block ${receipt.blockNumber}`);
-  //   console.log(`Gas used: ${receipt.gasUsed.toString()}`);
-  // };
 
   useMemo(() => {
     const addressIsValid = ethers.utils.isAddress(address);
