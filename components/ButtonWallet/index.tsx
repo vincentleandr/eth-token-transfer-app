@@ -8,10 +8,8 @@ import PowerSettingsNewRoundedIcon from '@mui/icons-material/PowerSettingsNewRou
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 
 import { CustomButton } from "../Button";
-import { ComponentBaseProps } from "../../pages/interface";
+import { ComponentBaseProps, WalletStatus } from "../../interface";
 import { truncateAddress } from "../../utils";
-
-type WalletStatus = 'connected' | 'disconnected';
 
 interface ButtonWalletProps extends ComponentBaseProps {
   connectedWalletButton?: ReactElement;

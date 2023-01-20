@@ -1,7 +1,7 @@
 import { useState, useMemo, BaseSyntheticEvent } from 'react';
 import Link from 'next/link';
 import { ethers } from 'ethers';
-import { ComponentBaseProps } from './interface';
+import { ComponentBaseProps } from '../interface';
 import {
   Box,
   Typography,

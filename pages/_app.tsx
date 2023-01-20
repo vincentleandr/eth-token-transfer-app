@@ -6,15 +6,8 @@ import { Box } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 
 import { ButtonTheme, ButtonWallet } from '../components';
+import { WalletStatus } from '../interface';
 import '../styles/main.css';
-
-declare global {
-  interface Window {
-    ethereum: any
-  }
-}
-
-type WalletStatus = 'connected' | 'disconnected';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [provider, setProvider] = useState<Web3Provider>();
