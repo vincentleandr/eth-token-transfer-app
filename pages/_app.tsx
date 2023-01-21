@@ -9,6 +9,12 @@ import { ButtonTheme, ButtonWallet } from '../components';
 import { WalletStatus } from '../interface';
 import '../styles/main.css';
 
+declare global {
+  interface Window {
+    ethereum: any
+  }
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   const [provider, setProvider] = useState<Web3Provider>();
   const [signer, setSigner] = useState<JsonRpcSigner>();

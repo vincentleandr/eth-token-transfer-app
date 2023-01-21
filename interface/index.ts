@@ -1,11 +1,5 @@
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
 
-declare global {
-  interface Window {
-    ethereum: any
-  }
-}
-
 export interface ComponentBaseProps {
   provider: Web3Provider | undefined;
   signer: JsonRpcSigner | undefined;
