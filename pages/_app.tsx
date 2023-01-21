@@ -47,17 +47,19 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     checkWalletConnection();
 
-    // Detect network changes
-    provider && provider.on("network", (newNetwork, oldNetwork) => {
-      if (oldNetwork) {
-        checkWalletConnection();
-      }
-    });
+    if (provider) {
+      // Detect network changes
+      provider && provider.on("network", (newNetwork, oldNetwork) => {
+        if (oldNetwork) {
+          checkWalletConnection();
+        }
+      });
 
-    // Detect account changes
-    window.ethereum.on("accountsChanged", () => {
-      checkWalletConnection();
-    });
+      // Detect account changes
+      window.ethereum.on("accountsChanged", () => {
+        checkWalletConnection();
+      });
+    }
   }, [provider, walletIsConnected]);
 
   // Global function to check to check / re-check for wallet connection
