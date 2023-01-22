@@ -10,9 +10,11 @@ $default-blue: #4472CA;
 ================================= */
 $bg-body-url: url('/bg-default.svg');
 $bg-default: $default-white;
+$bg-body-default: #F1F1F1;
 
 $bg-body-url-dark: url('/bg-dark.svg');
 $bg-default-dark: $default-dark;
+$bg-body-default-dark: #1C1C28;
 /* ================================= */
 
 /* Text Colors
@@ -69,6 +71,7 @@ $yellow-background-text: #E6AB0A;
     // Background
     --bg-body-url: #{$bg-body-url};
     --bg-card: #{$bg-default};
+    --bg-body: #{$bg-body-default};
 
     // Text
     --text-main: #{$text-main};
@@ -95,6 +98,7 @@ $yellow-background-text: #E6AB0A;
     // Background
     --bg-body-url: #{$bg-body-url-dark};
     --bg-card: #{$bg-default-dark};
+    --bg-body: #{$bg-body-default-dark};
 
     // Text
     --text-main: #{$text-main-dark};

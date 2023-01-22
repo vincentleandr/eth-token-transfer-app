@@ -7,7 +7,8 @@
 body {
     font-family: $font-primary;
     transition: all 0.2s ease, background-image 0.5s ease;
-    background-image: var(--bg-body-url);
+    // background-image: var(--bg-body-url);
+    background: var(--bg-body);
     background-size: cover;
     padding: 24px;
     

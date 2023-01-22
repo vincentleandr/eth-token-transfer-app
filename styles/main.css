@@ -23,6 +23,7 @@
 :root {
   --bg-body-url: url("/bg-default.svg");
   --bg-card: #FFFFFF;
+  --bg-body: #F1F1F1;
   --text-main: #333333;
   --textfield-border: #D3D3D3;
   --textfield-adornment-bg: #F1F1F1;
@@ -39,6 +40,7 @@
 [data-theme=dark] {
   --bg-body-url: url("/bg-dark.svg");
   --bg-card: #2D3747;
+  --bg-body: #1C1C28;
   --text-main: #FFFFFF;
   --textfield-border: #505762;
   --textfield-adornment-bg: #3F4754;
@@ -172,7 +174,7 @@
 body {
   font-family: "Inter", sans-serif;
   transition: all 0.2s ease, background-image 0.5s ease;
-  background-image: var(--bg-body-url);
+  background: var(--bg-body);
   background-size: cover;
   padding: 24px;
 }
