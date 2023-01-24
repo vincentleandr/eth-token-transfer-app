@@ -4,6 +4,7 @@ import { ethers } from 'ethers';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
 import { Box } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { ButtonTheme, ButtonWallet } from '../components';
 import { WalletStatus } from '../interface';
@@ -27,6 +28,8 @@ export default function App({ Component, pageProps }: AppProps) {
     balance: '',
     network: ''
   });
+
+  const isMobile = useMediaQuery('(max-width: 599px)');
 
   // Get the provider and signer to interact with the chain
   // Set both as global state and pass it to all components
@@ -96,14 +99,12 @@ export default function App({ Component, pageProps }: AppProps) {
       balance: formattedBalance,
       network: network?.name
     });
-    
-    // const mySignature = await signer.signMessage("Some custom message");
   };
 
   const appHeader = (
     <Box
       display={'flex'}
-      justifyContent='center'
+      justifyContent={isMobile ? 'space-between' : 'center'}
       position={'relative'}
     >
       <ButtonWallet

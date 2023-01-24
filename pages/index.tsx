@@ -1,5 +1,4 @@
 import { useState, useMemo, BaseSyntheticEvent } from 'react';
-import Link from 'next/link';
 import { ethers } from 'ethers';
 import { ComponentBaseProps } from '../interface';
 import {
@@ -55,8 +54,6 @@ export default function Home(props: ComponentBaseProps) {
     const formattedAmount = ethers.utils.parseEther(amount);
 
     if (signer) {
-      // await provider.send("eth_requestAccounts", []);
-
       try {
         const tx = await signer.sendTransaction({
           to: address,
@@ -141,6 +138,7 @@ export default function Home(props: ComponentBaseProps) {
           disableUnderline: true,
           className: 'input-base'
         }}
+        fullWidth
         value={address}
         onChange={(event: BaseSyntheticEvent) => setAddress(event.target.value)}
       />
@@ -168,6 +166,7 @@ export default function Home(props: ComponentBaseProps) {
           className: 'input-base',
           endAdornment: amountInputAdornment
         }}
+        fullWidth
         value={amount}
         onChange={(event: BaseSyntheticEvent) => onChangeAmount(event.target.value)}
       />

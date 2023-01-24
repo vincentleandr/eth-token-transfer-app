@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Button, Typography } from '@mui/material';
 import classNames from 'classnames';
 

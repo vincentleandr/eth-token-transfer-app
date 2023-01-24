@@ -1,5 +1,4 @@
-import { useState, useEffect, BaseSyntheticEvent, ReactElement } from "react";
-import { ethers } from 'ethers';
+import { useState, BaseSyntheticEvent, ReactElement } from "react";
 import Image from 'next/image'
 import { Box, Typography, Menu, Divider, CircularProgress, Tooltip } from '@mui/material';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';

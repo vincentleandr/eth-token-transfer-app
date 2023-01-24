@@ -1,5 +1,6 @@
 @import 'base';
 @import 'typography';
+@import 'layout';
 @import 'button';
 @import 'input';
 @import 'snackbar';
@@ -46,4 +47,10 @@ body {
     font-family: $font-primary;
     padding: 8px 16px;
     border-radius: 8px;
+}
+
+@include breakpoint(mobile) {
+	.card-base {
+        width: 100%;
+    }
 }

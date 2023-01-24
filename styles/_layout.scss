@@ -1,0 +1,27 @@
+/* Breakpoints Media Query
+================================= */
+@mixin breakpoint($type) {
+	@if $type == mobile {
+		@media only screen and (max-width: 599px)  {
+			@content;
+		}
+    }
+    
+    @if $type == tablet {
+		@media only screen and (max-width: 899px) {
+			@content;
+		}
+    }
+    
+    @if $type == laptop {
+		@media only screen and (max-width: 1199px) {
+			@content;
+		}
+    }
+    
+    @if $type == desktop {
+		@media only screen and (min-width: 1200px) {
+			@content;
+		}
+	}
+}

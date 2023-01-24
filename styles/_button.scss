@@ -41,7 +41,7 @@
 
 .button-theme {
     position: absolute;
-    right: 24px;
+    right: 0;
 }
 
 .button-icon {
@@ -57,5 +57,15 @@
 
     &:hover {
         background: var(--button-secondary-hover-bg);
+    }
+}
+
+@include breakpoint(mobile) {
+    .button-base {
+        padding: 16px 24px;
+    }
+
+	.button-theme {
+        position: relative;
     }
 }
