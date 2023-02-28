@@ -82,6 +82,7 @@ export default function Home(props: ComponentBaseProps) {
         });
         setResponseType('send');
         setOpenSnackbar(true);
+        checkWalletConnection();
       } catch (error) {
         console.log(error);
       }
@@ -128,6 +129,7 @@ export default function Home(props: ComponentBaseProps) {
         });
         setResponseType('mint');
         setOpenSnackbar(true);
+        checkWalletConnection();
       } catch (error) {
         console.log(error);
       }
