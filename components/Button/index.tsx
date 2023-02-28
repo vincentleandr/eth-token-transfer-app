@@ -13,6 +13,7 @@ interface ButtonProps {
   openPopUp?: boolean;
   startIcon?: ReactElement;
   href?: string;
+  fullWidth?: boolean;
 };
 
 export const CustomButton = (props: ButtonProps) => {
@@ -26,7 +27,8 @@ export const CustomButton = (props: ButtonProps) => {
     withPopUp,
     openPopUp,
     startIcon,
-    href
+    href,
+    fullWidth
   } = props;
 
   const buttonClassNames = classNames({
@@ -60,6 +62,7 @@ export const CustomButton = (props: ButtonProps) => {
       href={href}
       target={href && '_blank'}
       component={href ? 'a' : 'button'}
+      fullWidth={fullWidth}
     >
       {buttonContentToDisplay}
     </Button>

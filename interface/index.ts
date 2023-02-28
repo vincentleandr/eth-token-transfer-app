@@ -11,7 +11,11 @@ export interface ComponentBaseProps {
     balance: string;
     network: string;
   };
+  balance: { [key: string]: string },
+  addressIsWhitelisted: boolean
 };
 
 export type WalletStatus = 'connected' | 'disconnected';
 export type Theme = 'default' | 'dark';
+
+export type ResponseType = 'send' | 'mint' | 'whitelist';

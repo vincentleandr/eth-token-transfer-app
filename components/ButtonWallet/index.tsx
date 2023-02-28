@@ -9,9 +9,11 @@ import Jazzicon, { jsNumberForAddress } from 'react-jazzicon';
 import { CustomButton } from "../Button";
 import { ComponentBaseProps, WalletStatus } from "../../interface";
 import { truncateAddress } from "../../utils";
+import { networkExplorerUrl } from "../../variables/network";
 
 interface ButtonWalletProps extends ComponentBaseProps {
   connectedWalletButton?: ReactElement;
+  fullWidth?: boolean;
 };
 
 export const ButtonWallet = (props: ButtonWalletProps) => {
@@ -22,10 +24,12 @@ export const ButtonWallet = (props: ButtonWalletProps) => {
     walletIsConnected,
     isLoadingWallet,
     connectedWalletButton,
-    walletData
+    walletData,
+    balance,
+    fullWidth
   } = props;
 
-  const { address, balance, network } = walletData;
+  const { address, network } = walletData;
 
   const [copyAddressTooltipText, setCopyAddressTooltipText] = useState<'Copy address' | 'Copied!'>('Copy address');
 
@@ -77,6 +81,7 @@ export const ButtonWallet = (props: ButtonWalletProps) => {
       variant='primary'
       disabled={isLoadingWallet}
       startIcon={isLoadingWallet ? <CircularProgress size={'24px'} /> : undefined}
+      fullWidth={fullWidth}
     />
   );
 
@@ -107,6 +112,7 @@ export const ButtonWallet = (props: ButtonWalletProps) => {
     />
   );
 
+  const explorerBaseUrl = networkExplorerUrl[network] || networkExplorerUrl.homestead;
   const walletMenu = (
     <Menu
       id="connected-wallet-menu"
@@ -152,7 +158,7 @@ export const ButtonWallet = (props: ButtonWalletProps) => {
           <CustomButton
             buttonContent={<CallMadeRoundedIcon />}
             variant='icon'
-            href={`https://etherscan.io/address/${address}`}
+            href={`${explorerBaseUrl}/address/${address}`}
           />
 
           <Tooltip
@@ -190,6 +196,7 @@ export const ButtonWallet = (props: ButtonWalletProps) => {
           {mappedNetwork}
         </Typography>
       </Box>
+      <Divider />
       <Box
         display={'flex'}
         alignItems='center'
@@ -201,7 +208,15 @@ export const ButtonWallet = (props: ButtonWalletProps) => {
           width={24}
           height={24}
         />
-        <Typography ml={'16px'}>{balance}</Typography>
+        <Typography ml={'16px'}>{balance['ETH']}</Typography>
+      </Box>
+      <Box
+        display={'flex'}
+        alignItems='center'
+        p={'16px 24px'}
+      >
+        <Typography width={24} height={24}>VL</Typography>
+        <Typography ml={'16px'}>{balance['VL']}</Typography>
       </Box>
     </Menu>
   );

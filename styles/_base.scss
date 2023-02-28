@@ -36,7 +36,7 @@ $textfield-adornment-bg-dark: #3F4754;
 
 /* Button Colors
 ================================= */
-$button-primary-bg: #4472CA;
+$button-primary-bg: $default-blue;
 $button-primary-hover-bg: darken($button-primary-bg, 8%);
 $button-secondary-bg: $bg-default;
 $button-secondary-hover-bg: darken($button-secondary-bg, 3%);

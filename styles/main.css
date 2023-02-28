@@ -55,14 +55,14 @@
   font-family: "Inter", sans-serif;
 }
 
-.MuiTypography-body1 {
+.MuiTypography-body1, .tabs-base button {
   font-weight: 600;
   font-size: 16px;
 }
 
 /* Breakpoints Media Query
 ================================= */
-.button-base {
+.button-base, .tabs-base button {
   font-family: "Inter", sans-serif;
   padding: 16px 32px;
   border-radius: 16px;
@@ -117,7 +117,7 @@
 }
 
 @media only screen and (max-width: 599px) {
-  .button-base {
+  .button-base, .tabs-base button {
     padding: 16px 24px;
   }
   .button-theme {
@@ -132,13 +132,14 @@
   color: var(--text-main);
   transition: all 0.2s ease;
 }
+.input-base.with-selector {
+  border-right: 0;
+  border-radius: 8px 0 0 8px;
+}
 .input-base input {
   padding: 0 16px;
 }
 .input-base input::-moz-placeholder {
-  color: var(--textfield-placeholder);
-}
-.input-base input:-ms-input-placeholder {
   color: var(--textfield-placeholder);
 }
 .input-base input::placeholder {
@@ -149,11 +150,21 @@
 }
 
 .input-adornment {
-  height: 100%;
-  padding: 0 16px;
+  min-width: 90px;
+  height: 50px;
   border-radius: 0 8px 8px 0;
-  border-left: 1px solid var(--textfield-border);
   background: var(--textfield-adornment-bg);
+}
+
+.select-base {
+  font-family: "Inter", sans-serif;
+  color: var(--text-main);
+}
+.select-base svg path {
+  fill: var(--text-main);
+}
+.select-base .MuiOutlinedInput-notchedOutline {
+  border: 1px solid var(--textfield-border) !important;
 }
 
 .snackbar-base {
@@ -197,10 +208,20 @@ body p, body span {
 }
 
 .card-base, .connected-wallet-menu {
-  padding: 40px;
   background: var(--bg-card);
   border-radius: 24px;
   box-shadow: var(--shadow-soft);
+  max-width: 400px;
+}
+
+.tabs-base button {
+  color: var(--text-main);
+  border-radius: 0;
+  padding: 24px 0;
+}
+.tabs-base button.Mui-selected {
+  color: #4472CA;
+  border-bottom: 1px solid #4472CA;
 }
 
 .connected-wallet-menu {
@@ -219,6 +240,14 @@ body p, body span {
   font-family: "Inter", sans-serif;
   padding: 8px 16px;
   border-radius: 8px;
+}
+
+.MuiMenuItem-root {
+  font-family: "Inter", sans-serif;
+}
+
+.MuiDivider-root {
+  border-color: var(--textfield-border);
 }
 
 @media only screen and (max-width: 599px) {

@@ -24,10 +24,25 @@ body {
 }
 
 .card-base {
-    padding: 40px;
     background: var(--bg-card);
     border-radius: 24px;
     box-shadow: var(--shadow-soft);
+    max-width: 400px;
+}
+
+.tabs-base {
+    button {
+        @extend .button-base;
+        @extend .MuiTypography-body1;
+        color: var(--text-main);
+        border-radius: 0;
+        padding: 24px 0;
+
+        &.Mui-selected {
+            color: $default-blue;
+            border-bottom: 1px solid $default-blue;
+        }
+    }
 }
 
 .connected-wallet-menu {
@@ -47,6 +62,14 @@ body {
     font-family: $font-primary;
     padding: 8px 16px;
     border-radius: 8px;
+}
+
+.MuiMenuItem-root {
+    font-family: $font-primary;
+}
+
+.MuiDivider-root {
+    border-color: var(--textfield-border);
 }
 
 @include breakpoint(mobile) {

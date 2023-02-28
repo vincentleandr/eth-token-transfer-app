@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { ButtonTheme, ButtonWallet } from '../components';
 import { WalletStatus } from '../interface';
+import { VLToken } from '../variables/contracts';
 import '../styles/main.css';
 
 declare global {
@@ -25,9 +26,12 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const [walletData, setWalletData] = useState<any>({
     address: '',
-    balance: '',
     network: ''
   });
+
+  const [balance, setBalance] = useState<{ [key: string]: string }>({});
+
+  const [addressIsWhitelisted, setAddressIsWhitelisted] = useState<boolean>(false);
 
   const isMobile = useMediaQuery('(max-width: 599px)');
 
@@ -90,15 +94,31 @@ export default function App({ Component, pageProps }: AppProps) {
     const address = signer && await signer.getAddress();
 
     const balance = provider && address && await provider.getBalance(address);
-    const formattedBalance = balance && ethers.utils.formatEther(balance);
+    const ETHTokenBalance = balance && ethers.utils.formatEther(balance);
 
     const network = provider && await provider.getNetwork();
 
     setWalletData({
       address,
-      balance: formattedBalance,
       network: network?.name
     });
+
+    let VLTokenBalance;
+    try {
+      const tokenContract = new ethers.Contract(VLToken.address, VLToken.abi, signer);
+      const tokenBalance = await tokenContract.balanceOf(address);
+      VLTokenBalance = ethers.utils.formatUnits(tokenBalance);
+
+      const addressIsWhitelisted = await tokenContract.verifyWhitelist(address);
+      setAddressIsWhitelisted(addressIsWhitelisted);
+    } catch (error) {
+      console.log(error, '===');
+    }
+
+    setBalance({
+      ETH: ETHTokenBalance || '0',
+      VL: VLTokenBalance || '0'
+    })
   };
 
   const appHeader = (
@@ -114,6 +134,8 @@ export default function App({ Component, pageProps }: AppProps) {
         walletIsConnected={walletIsConnected}
         isLoadingWallet={isLoadingWallet}
         walletData={walletData}
+        balance={balance}
+        addressIsWhitelisted={addressIsWhitelisted}
       />
       <ButtonTheme />
     </Box>
@@ -130,6 +152,8 @@ export default function App({ Component, pageProps }: AppProps) {
           walletIsConnected={walletIsConnected}
           isLoadingWallet={isLoadingWallet}
           walletData={walletData}
+          balance={balance}
+          addressIsWhitelisted={addressIsWhitelisted}
           {...pageProps}
         />
       </StyledEngineProvider>
