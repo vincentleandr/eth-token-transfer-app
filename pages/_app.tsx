@@ -2,11 +2,11 @@ import type { AppProps } from 'next/app'
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers';
-import { Box } from '@mui/material';
+import { Box, Dialog, Typography } from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { ButtonTheme, ButtonWallet } from '../components';
+import { ButtonTheme, ButtonWallet, CustomButton } from '../components';
 import { WalletStatus } from '../interface';
 import { VLToken } from '../variables/contracts';
 import '../styles/main.css';
@@ -28,10 +28,10 @@ export default function App({ Component, pageProps }: AppProps) {
     address: '',
     network: ''
   });
-
   const [balance, setBalance] = useState<{ [key: string]: string }>({});
-
   const [addressIsWhitelisted, setAddressIsWhitelisted] = useState<boolean>(false);
+
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const isMobile = useMediaQuery('(max-width: 599px)');
 
@@ -45,8 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
       const signer = provider.getSigner();
       setSigner(signer);
     } catch (error) {
-      // TODO: Suggest user to install metamask
-      console.log(error, '===');
+      setModalOpen(true);
     }
   }, []);
 
@@ -112,6 +111,7 @@ export default function App({ Component, pageProps }: AppProps) {
       const addressIsWhitelisted = await tokenContract.verifyWhitelist(address);
       setAddressIsWhitelisted(addressIsWhitelisted);
     } catch (error) {
+      // TODO: Handle error
       console.log(error, '===');
     }
 
@@ -120,6 +120,31 @@ export default function App({ Component, pageProps }: AppProps) {
       VL: VLTokenBalance || '0'
     })
   };
+
+  const infoModal = (
+    <Dialog
+      open={modalOpen}
+      onClose={() => setModalOpen(false)}
+      PaperProps={{ className: `card-base` }}
+    >
+      <Box p={'32px'}>
+        <Typography variant='h6' mb={'16px'}>Hi there!</Typography>
+        <Typography mb={'32px'}>
+          To get the full experience of the app, please use a desktop browser and install <a href='https://metamask.io/' target={'_blank'} rel="noreferrer">Metamask</a>.
+        </Typography>
+        <Box
+          display={'flex'}
+          justifyContent='center'
+        >
+          <CustomButton
+            buttonContent={'Got it!'}
+            onClick={() => setModalOpen(false)}
+            variant='primary'
+          />
+        </Box>
+      </Box>
+    </Dialog>
+  );
 
   const appHeader = (
     <Box
@@ -156,6 +181,7 @@ export default function App({ Component, pageProps }: AppProps) {
           addressIsWhitelisted={addressIsWhitelisted}
           {...pageProps}
         />
+        {infoModal}
       </StyledEngineProvider>
     </div>
   )

@@ -84,6 +84,7 @@ export default function Home(props: ComponentBaseProps) {
         setOpenSnackbar(true);
         checkWalletConnection();
       } catch (error) {
+        // TODO: Handle error
         console.log(error);
       }
 
@@ -131,6 +132,7 @@ export default function Home(props: ComponentBaseProps) {
         setOpenSnackbar(true);
         checkWalletConnection();
       } catch (error) {
+        // TODO: Handle error
         console.log(error);
       }
 
@@ -159,6 +161,7 @@ export default function Home(props: ComponentBaseProps) {
         setOpenSnackbar(true);
         checkWalletConnection();
       } catch (error) {
+        // TODO: Handle error
         console.log(error);
       }
 
@@ -242,7 +245,7 @@ export default function Home(props: ComponentBaseProps) {
     </Box>
 );
 
-  // Send Form
+  // Send Tab
   // ========================
   const addressInput = (
     <Box mb={'24px'}>
@@ -304,7 +307,7 @@ export default function Home(props: ComponentBaseProps) {
   );
   // ========================
 
-  // Mint Form
+  // Mint Tab
   // ========================
   const whitelistButton = (
     <CustomButton
@@ -361,6 +364,13 @@ export default function Home(props: ComponentBaseProps) {
 
   const content = activeTab === 0 ? sendTabContent : mintTabContent;
 
+  const tabContent = (
+    <Box p={'40px'}>
+      {content}
+      {formButton}
+    </Box>
+  );
+
   return (
     <Box
       display={'flex'}
@@ -374,10 +384,7 @@ export default function Home(props: ComponentBaseProps) {
         className='card-base'
       >
         {tabs}
-        <Box p={'40px'}>
-          {content}
-          {formButton}
-        </Box>
+        {tabContent}
         {responseSnackbar}
       </Box>
     </Box>
