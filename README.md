@@ -12,7 +12,7 @@ It was built using these tech stacks:
 Before any development, I also [designed the UI](https://www.figma.com/file/Vg5s9I4A8IoLYYGVECfriG/ETH-Token-Transfer-App?type=design&node-id=0%3A1&mode=design&t=rByReZlEy2g3RKRI-1) using Figma.
 
 # Features
-This app is a pretty simple Web3 app that covers the basic and functionalities like:
+This app is a pretty simple Web3 app that covers the basic functionalities like:
 - Connect / disconnect Web3 wallet
 - Detect changes on wallet (account or network)
 - Transfer token e.g. ETH and ERC-20 token
@@ -22,6 +22,7 @@ This app is a pretty simple Web3 app that covers the basic and functionalities l
 
 # Demo
 Feel free to play around with the app here https://eth-token-transfer-app.vercel.app.
+Highly recommended to play around using Testnet like Sepolia, however the Mainnet is also supported and working as expected.
 
 ### Overview
 https://github.com/vincentleandr/eth-token-transfer-app/assets/31660411/fdc3e3a1-e9b6-457d-a9fb-552594e88d3a
