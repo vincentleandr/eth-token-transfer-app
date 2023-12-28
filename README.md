@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# About
+This app was built as a part of my learning journey and to satisfy my interest in learning Blockchain and Web3.
 
-## Getting Started
+It was built using these tech stacks:
+- React
+- Typescript
+- Next.js
+- Ether.js -> for interacting with Web3 (Ethereum chain)
+- Solidity -> for the smart contract
+- SCSS -> for styling
 
-First, run the development server:
+Before any development, I also [designed the UI](https://www.figma.com/file/Vg5s9I4A8IoLYYGVECfriG/ETH-Token-Transfer-App?type=design&node-id=0%3A1&mode=design&t=rByReZlEy2g3RKRI-1) using Figma.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+# Features
+This app is a pretty simple Web3 app that covers the basic and functionalities like:
+- Connect / disconnect Web3 wallet
+- Detect changes on wallet (account or network)
+- Transfer token e.g. ETH and ERC-20 token
+- Whitelist address
+- Mint ERC-20 token
+- Integrated to a [smart contract](https://github.com/vincentleandr/vince-token-contract) (Solidity) of an ERC-20 token that I've created
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Demo
+Feel free to play around with the app here https://eth-token-transfer-app.vercel.app.
