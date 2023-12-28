@@ -22,3 +22,15 @@ This app is a pretty simple Web3 app that covers the basic and functionalities l
 
 # Demo
 Feel free to play around with the app here https://eth-token-transfer-app.vercel.app.
+
+### Overview
+https://github.com/vincentleandr/eth-token-transfer-app/assets/31660411/fdc3e3a1-e9b6-457d-a9fb-552594e88d3a
+
+### Web3 Wallet Interaction
+https://github.com/vincentleandr/eth-token-transfer-app/assets/31660411/580e087a-ba77-4167-b72f-e0241abe4cff
+
+### Mint ERC-20 Token
+https://github.com/vincentleandr/eth-token-transfer-app/assets/31660411/a7fdfad1-0916-4480-ad81-343e72822730
+
+### Transfer ERC-20 Token
+https://github.com/vincentleandr/eth-token-transfer-app/assets/31660411/43f571b2-d266-4d88-abd9-1a40ac0843b8
